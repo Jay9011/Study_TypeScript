@@ -12,4 +12,9 @@ var Employee = /** @class */ (function () {
     return Employee;
 }());
 var employee1 = new Employee();
+employee1.age = 25;
+employee1.fullName = '윤종섭';
+employee1.jobTitle = '프로그래머';
+employee1.hourlyRate = 2000;
+employee1.workingHoursPerWeek = 48;
 employee1.printEmployeeDetail();
