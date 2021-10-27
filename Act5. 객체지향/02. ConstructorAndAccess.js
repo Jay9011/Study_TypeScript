@@ -1,6 +1,9 @@
 /**
  * 모든 Class는 Constructor를 가진다.
- *
+ * 1. Class의 접근 제한자는 public, private, protected가 있다.
+ * 2. 확장(extends)을 사용하는 경우 super 로 부모 프로퍼티에 접근 가능하다.
+ * 3. private 대신 #을 사용해서 접근 제한자를 단축할 수 있다.
+ * 4. protected는 동일 클래스, 상속 클래스 에서 접근 가능하지만 외부에서 접근 불가능하다.
  */
 var Employee2 = /** @class */ (function () {
     /**
