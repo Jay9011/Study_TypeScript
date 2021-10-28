@@ -5,11 +5,32 @@ Javascript는 컴파일 후 러닝타임에서 에러를 확인할 수 있고, �
 # tsconfig.json
 1. ```tsconfig.json```에 Compile 기본 옵션을 설정한다.
 > ✅ `"compilerOptions"`
-> ```
-> "target" ➙ 컴파일 할 대상 javascript 버전
-> "module" ➙ 컴파일 할 import 문법
-> "strictNullChecks" ➙ null 체크를 사용한다.
-> ```
+>
+> - "target" ➙ 컴파일 할 대상 javascript 버전 `es3`부터 `es5`, `es6` 등 가장 최신 버전인 `esnext`까지 있다.
+> - "module" ➙ 컴파일 할 import 문법
+> - "strictNullChecks" ➙ null 체크를 사용한다.
+> - "allowJs" ➙ 타입스크립트 컴파일을 할 때 자바스크립트 파일도 포함될 수 있는지를 설정해주는 속성. 이미 기존에 존재하는 자바스크립트 프로젝트에 타입스크립트를 점진적으로 적용할 때 사용하면 좋은 속성.
+> - "lib" ➙ 타입스크립트를 자바스크립트로 컴파일 할 때 포함될 라이브러리의 목록. 디 속성을 활용하는 가장 대표적인 사례는 `async` 코드를 컴파일 할 때 `Promise` 객체가 필요하므로 아래와 같은 설정을 해줘야 한다.
+>   ```json
+>   // tsconfig.json
+>   {
+>     "lib": ["es2015", "dom", "dom.iterable"]
+>   }
+>   ```
+> - "include" ➙ 변환할 폴더 지정 (`*`: 해당 디렉토리에서 모든 파일 검색, `?`: 해당 디렉토리 안에 파일 이름 중 한 글자라도 맞으면 해당, `**`: 하위 디렉토리를 재귀적으로 접근(하위 디렉토리의 하위 디렉토리가 존재하는 경우 반복해서 접근))
+>   ```json
+>   {
+>       "include": ["src/**/*"]
+>   }
+>   ```
+> - "exclude" ➙ 변환하지 않을 폴더 경로 지정
+>   ```json
+>   {
+>       "exclude": ["node_modules"]
+>   }
+>   ```
+> - "typeRoots" ➙ 써드파티 라이브러리의 타입을 정의해놓은 `@type` 폴더의 위치를 변경할 수 있다.
+> - "extends" ➙ 특정 타입스크립트 설정 파일에서 다른 타입스크립트 설정의 내용을 가져와 추가할 수 있는 속성.
 # Type
 1. Type Inference (타입 추론)
     > *typeScript*에서는 타입을 지정하지 않을 시 선언과 동시에 삽입된 타입으로 지정된다.
