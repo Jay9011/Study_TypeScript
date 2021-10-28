@@ -24,6 +24,35 @@ Javascript는 컴파일 후 러닝타임에서 에러를 확인할 수 있고, �
     > - `:` 를 이용하여 javascript 코드에 타입을 정의하는 방식을 타입 표기(Type Annotaion)이라고 함.
     >   - Boolean, Number, String, Array, Typle, Object, Enum, Void, Undefined, Null, Never, Any 타입이 있음.
     >   - Array의 경우 `: number[]` 형태로 타입을 정의하거나 `: Array<number>` 형태로 타입을 정의할 수 있음.
+1. Type Compatibility (타입 호환)
+    >   타입 호환이란 타입스크립트 코드에서 특정 타입이 다른 타입의 구조와 맞다면 에러로 표기하지 않고 인정해주는 것을 말한다.
+    >   ```typescript
+    >   interface Ironman {
+    >       name: string;
+    >   }
+    >   class Avengers {
+    >       name: string;
+    >   }
+    >   
+    >   let i: Ironman;
+    >   i = new Avengers(); // OK, because of structural typing
+    >   ```
+    >   위와 같은 구조에서 Ironman과 Avengers는 명시된 타입명이  다르지만 구조적인 관점에서는 같은 타입을 갖는 타입이기 때문에 서로 인정해준다는 것이다.
+    >   ```typescript
+    >    let hero: Avengers;
+    >    let capt = { name: "Captain", location: "Pangyo" };
+    >    hero = capt;
+    >   ```
+    >   위의 코드에서 `capt`가 `hero` 타입에 호환될 수 있는 이유는 `capt`의 속성중에 `name`이 있기 때문이다.
+    >   `Avengers` 인터페이스에서 `name` 속성을 갖고 있기 때문에 `capt`는 `Avengers` 타입에 호환될 수 있다.
+    >   ```typescript
+    >   function assemble(a: Avengers) {
+    >       console.log("어벤져스 모여라", a.name);
+    >    }
+    >    // 위에서 정의한 capt 변수. 타입은 { name: string; location: string;}
+    >    assemble(capt);
+    >   ```
+    >   함수 호출에서도 `capt` 변수에 이미 `name` 속성이 있기 때문에 `assemble` 함수의 호출 인자로 넘길 수 있다.
 1. `Union Type` : 여러개의 타입을 쓸 수 있게 정의하는 방법. `|` 로 타입을 연결한다.
 1. `Intersection Type` : 여러 타입을 모두 만족시키는 하나의 타입을 만든다. `&` 로 타입을 연결한다.
 # 타입 별칭 (Type Aliases)
